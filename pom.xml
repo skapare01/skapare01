@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>groupId</groupId>
+    <artifactId>browser-tests</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <individualTests></individualTests> <!--can be used to pass in a list of test classes for one-off/special cases-->
+        <parallelProcesses>classesAndMethods</parallelProcesses>
+        <useUnlimitedThreads>false</useUnlimitedThreads>
+        <threadCountClasses>2</threadCountClasses>
+        <threadCountMethods>2</threadCountMethods>
+        <forkCount>2</forkCount>
+        <reuseForks>true</reuseForks>
+        <perCoreThreadCount>false</perCoreThreadCount>
+        <parallelTestsTimeoutForcedInSeconds>0</parallelTestsTimeoutForcedInSeconds>
+        <parallelTestsTimeoutInSeconds>0</parallelTestsTimeoutInSeconds>
+        <login.url>.trunk.entratadev.com</login.url>
+        <resident.url>.trunk.residentportaldev.com</resident.url> <!--This is the URL for Resident Portal-->
+        <prospect.url>.trunk.prospectportaldev.com/Apartments/module/application_authentication/</prospect.url>
+        <login.username>Entrata_4592</login.username> <!--This is Brian's until we can get a test one made-->
+        <entrata.login.password>Xento123</entrata.login.password> <!--This is written for the demo, will be a secret before any CI runs start-->
+        <clientadmin.login.password>Entrata123</clientadmin.login.password> <!--This is written for the demo, will be a secret before any CI runs start-->
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+        <wait.short>5</wait.short>
+        <wait.default>10</wait.default>
+        <wait.long>20</wait.long>
+        <wait.unreasonable>60</wait.unreasonable>
+        <wait.ludicrous>600</wait.ludicrous>
+        <certificatesExpiredBanner>false</certificatesExpiredBanner>
+        <headlessBrowser>false</headlessBrowser>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jaxb-api</artifactId>
+                        <version>2.4.0-b180830.0359</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-impl</artifactId>
+                        <version>2.4.0-b180830.0438</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.glassfish.jaxb</groupId>
+                        <artifactId>jaxb-runtime</artifactId>
+                        <version>2.4.0-b180830.0438</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>javax.activation</groupId>
+                        <artifactId>activation</artifactId>
+                        <version>1.1.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>javax.activation</groupId>
+                        <artifactId>javax.activation-api</artifactId>
+                        <version>1.2.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <systemPropertyVariables>
+                        <login.url>${login.url}</login.url>
+                        <resident.url>${resident.url}</resident.url> <!--This is the URL for Resident Portal-->
+                        <prospect.url>${prospect.url}</prospect.url>
+                        <login.username>${login.username}</login.username> <!--This is Carl's until we can get a test one made-->
+                        <entrata.login.password>${entrata.login.password}</entrata.login.password>
+                        <clientadmin.login.password>${clientadmin.login.password}</clientadmin.login.password>
+                        <wait.short>${wait.short}</wait.short>
+                        <wait.default>${wait.default}</wait.default>
+                        <wait.long>${wait.long}</wait.long>
+                        <wait.unreasonable>${wait.unreasonable}</wait.unreasonable>
+                        <wait.ludicrous>${wait.ludicrous}</wait.ludicrous>
+                        <certificatesExpiredBanner>${certificatesExpiredBanner}</certificatesExpiredBanner>
+                        <headlessBrowser>${headlessBrowser}</headlessBrowser>
+                    </systemPropertyVariables>
+                    <skipTests>true</skipTests> <!-- this skips UNIT tests-->
+                    <parallel>${parallelProcesses}</parallel> <!--classes, methods, classesAndMethods, or none -->
+                    <useUnlimitedThreads>${useUnlimitedThreads}</useUnlimitedThreads>
+                    <threadCountClasses>${threadCountClasses}</threadCountClasses>
+                    <threadCountMethods>${threadCountMethods}</threadCountMethods>
+                    <forkCount>${forkCount}</forkCount>
+                    <reuseForks>${reuseForks}</reuseForks>
+                    <perCoreThreadCount>${perCoreThreadCount}</perCoreThreadCount>
+                    <parallelTestsTimeoutForcedInSeconds>${parallelTestsTimeoutForcedInSeconds}</parallelTestsTimeoutForcedInSeconds>
+                    <parallelTestsTimeoutInSeconds>${parallelTestsTimeoutInSeconds}</parallelTestsTimeoutInSeconds>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jaxb-api</artifactId>
+                        <version>2.4.0-b180830.0359</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-impl</artifactId>
+                        <version>2.4.0-b180830.0438</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.glassfish.jaxb</groupId>
+                        <artifactId>jaxb-runtime</artifactId>
+                        <version>2.4.0-b180830.0438</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>javax.activation</groupId>
+                        <artifactId>activation</artifactId>
+                        <version>1.1.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>javax.activation</groupId>
+                        <artifactId>javax.activation-api</artifactId>
+                        <version>1.2.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <test>${individualTests}</test>
+                    <parallel>${parallelProcesses}</parallel> <!--classes, methods, classesAndMethods, or none -->
+                    <useUnlimitedThreads>${useUnlimitedThreads}</useUnlimitedThreads>
+                    <threadCountClasses>${threadCountClasses}</threadCountClasses>
+                    <threadCountMethods>${threadCountMethods}</threadCountMethods>
+                    <forkCount>${forkCount}</forkCount>
+                    <reuseForks>${reuseForks}</reuseForks>
+                    <perCoreThreadCount>${perCoreThreadCount}</perCoreThreadCount>
+                    <parallelTestsTimeoutForcedInSeconds>${parallelTestsTimeoutForcedInSeconds}</parallelTestsTimeoutForcedInSeconds>
+                    <parallelTestsTimeoutInSeconds>${parallelTestsTimeoutInSeconds}</parallelTestsTimeoutInSeconds>
+                    <systemPropertyVariables>
+                        <login.url>${login.url}</login.url>
+                        <resident.url>${resident.url}</resident.url> <!--This is the URL for Resident Portal-->
+                        <prospect.url>${prospect.url}</prospect.url>
+                        <login.username>${login.username}</login.username> <!--This is Carl's until we can get a test one made-->
+                        <entrata.login.password>${entrata.login.password}</entrata.login.password>
+                        <clientadmin.login.password>${clientadmin.login.password}</clientadmin.login.password>
+                        <wait.short>${wait.short}</wait.short>
+                        <wait.default>${wait.default}</wait.default>
+                        <wait.long>${wait.long}</wait.long>
+                        <wait.unreasonable>${wait.unreasonable}</wait.unreasonable>
+                        <wait.ludicrous>${wait.ludicrous}</wait.ludicrous>
+                        <certificatesExpiredBanner>${certificatesExpiredBanner}</certificatesExpiredBanner>
+                        <headlessBrowser>${headlessBrowser}</headlessBrowser>
+                    </systemPropertyVariables>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+        </plugins>
+    </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.0.0-M5</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
+        </plugins>
+    </reporting>
+</project>
