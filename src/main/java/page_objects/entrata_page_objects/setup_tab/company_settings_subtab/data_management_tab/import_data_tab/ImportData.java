@@ -13,6 +13,7 @@ public class ImportData extends BasePage {
     private final By IMPORT_DATA_PAGE = By.id("data_upload");
 
     public boolean importDataPageVisible() {
-        return confirmElementIsVisible(IMPORT_DATA_PAGE);
+      //  return confirmElementIsVisible(IMPORT_DATA_PAGE);
+        return clickElement(IMPORT_DATA_PAGE);
     }
 }

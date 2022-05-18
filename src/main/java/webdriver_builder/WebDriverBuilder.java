@@ -18,7 +18,8 @@ public class WebDriverBuilder {
         }
 
         options.addArguments("--user-agent=browser-tests");
-        options.addArguments("--window-size=1400,800");
+        //options.addArguments("--window-size=1400,800");
+        options.addArguments("start-maximized");
 
         //options.setPageLoadStrategy(PageLoadStrategy.NONE);
         return new ChromeDriver(options);

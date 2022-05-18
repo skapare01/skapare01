@@ -20,6 +20,7 @@ public class BaseBrowserTest {
     public BaseBrowserTest(String client) {
         loginUrl = "https://" + client + System.getProperty("login.url");
         loginCreds = "entrata";
+       // loginCreds = "CLIENTADMIN";
     }
 
     public BaseBrowserTest(String client, SitesEnum site, String username, String password) {
@@ -131,10 +132,10 @@ public class BaseBrowserTest {
             }
         }
 
-        @After
+       /* @After
         public void driverCleanup () {
             driver.quit();
-        }
+        }*/
     }
 
 

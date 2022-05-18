@@ -16,6 +16,8 @@ public class CompanyDataManagementNav extends BasePage {
     private final By MIGRATIONS_TAB = By.id("li_nav_migrationsxxx");
     private final By DATA_CLEANUP_TAB = By.id("li_nav_data_cleanupxxx");
 
+    private final By import_data_new = By.id("li_nav_import_data-newxxx");
+
     //Data Management Tab Navigation Methods
     public boolean clickIntegrationSettingsTab() {
         return clickElement(INTEGRATION_SETTINGS_TAB);
@@ -31,5 +33,9 @@ public class CompanyDataManagementNav extends BasePage {
 
     public boolean dataCleanupTabCLick() {
         return clickElement(DATA_CLEANUP_TAB);
+    }
+
+    public boolean new_import_data_page() {
+        return clickElement(import_data_new);
     }
 }
