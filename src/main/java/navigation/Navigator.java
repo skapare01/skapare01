@@ -16,5 +16,7 @@ public class Navigator {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        System.out.println("hello");
     }
 }
