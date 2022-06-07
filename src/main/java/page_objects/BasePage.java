@@ -9,6 +9,7 @@ import wait_times.WaitTimes;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BasePage {
     public WebDriver driver;
@@ -144,6 +145,7 @@ public class BasePage {
                     .until(ExpectedConditions.visibilityOfElementLocated(locator));
             Select select = new Select(element);
             select.selectByValue(value);
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -157,6 +159,7 @@ public class BasePage {
                     .until(ExpectedConditions.visibilityOfElementLocated(locator));
             Select select = new Select(element);
             select.selectByValue(value);
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -465,5 +468,21 @@ public class BasePage {
         }
     }
 
+    public boolean selectFromDropdownForOtherTypeElement(By locator, String text) {
+        try {
+            List<WebElement> dropImport = driver.findElements(locator);
 
+            System.out.println(dropImport.size());
+            for (int i = 0; i <= dropImport.size() - 1; i++) {
+                if (dropImport.get(i).getText().contains(text)) {
+                    dropImport.get(i).click();
+                    break;
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

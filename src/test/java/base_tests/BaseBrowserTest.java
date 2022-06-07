@@ -20,7 +20,7 @@ public class BaseBrowserTest {
     public BaseBrowserTest(String client) {
         loginUrl = "https://" + client + System.getProperty("login.url");
         loginCreds = "entrata";
-       // loginCreds = "CLIENTADMIN";
+       // loginCreds = "clientadmin";
     }
 
     public BaseBrowserTest(String client, SitesEnum site, String username, String password) {
@@ -83,6 +83,19 @@ public class BaseBrowserTest {
                             loginPage.clickLoginButton());
                     assertTrue("Unable to click close on Delinquency Notice Window",
                             del.confirmDelinquencyNoticeWindow());
+                    break;
+
+                case "clientadmin":
+                    ClientAdminLoginPage loginToClientAdmin1 = new ClientAdminLoginPage(driver);
+                   // DelinquencyNoticeWindow del1 = new DelinquencyNoticeWindow(driver);
+                    assertTrue("Unable to enter Username on Entrata Login Page!",
+                            loginToClientAdmin1.enterClientAdminUsername(System.getProperty("login.username")));
+                    assertTrue("Unable to enter Password on Entrata Login Page!",
+                            loginToClientAdmin1.enterClientAdminPassword(System.getProperty("clientadmin.login.password")));
+                    assertTrue("Unable to click Login button on Entrata Login Page!",
+                            loginToClientAdmin1.clickLoginButton());
+                    /*assertTrue("Unable to click close on Delinquency Notice Window",
+                            del1.confirmDelinquencyNoticeWindow());*/
                     break;
                 case "ca":
                     ClientAdminLoginPage loginToClientAdmin = new ClientAdminLoginPage(driver);

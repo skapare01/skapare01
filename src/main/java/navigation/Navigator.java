@@ -17,6 +17,6 @@ public class Navigator {
             e.printStackTrace();
         }
 
-        System.out.println("hello");
+
     }
 }

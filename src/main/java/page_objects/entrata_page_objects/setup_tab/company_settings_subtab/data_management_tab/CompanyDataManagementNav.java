@@ -35,7 +35,7 @@ public class CompanyDataManagementNav extends BasePage {
         return clickElement(DATA_CLEANUP_TAB);
     }
 
-    public boolean new_import_data_page() {
+    public boolean newImportDataPage() {
         return clickElement(import_data_new);
     }
 }

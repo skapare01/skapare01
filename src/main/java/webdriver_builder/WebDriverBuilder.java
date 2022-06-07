@@ -1,5 +1,6 @@
 package webdriver_builder;
 
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,7 @@ public class WebDriverBuilder {
 
     public WebDriver getDriver() {
         WebDriverManager.chromedriver().setup();
+        //WebDriverManager.firefoxdriver().setup();
         ChromeOptions options = new ChromeOptions();
 
         //headless option
